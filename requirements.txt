@@ -1,0 +1,28 @@
+gymnasium==0.29.1
+numpy==1.26.4
+pandas==2.2.1
+matplotlib==3.8.3
+scipy==1.12.0
+
+# RL
+torch>=2.2.0
+stable-baselines3==2.3.2
+sb3-contrib==2.3.0   # for MaskablePPO
+
+# UI & tracking
+streamlit==1.39.0
+mlflow==2.16.2
+
+# api service
+fastapi==0.115.4
+uvicorn==0.30.6
+
+# config & quality
+pydantic==2.9.2
+pyyaml==6.0.2
+ruff==0.6.9
+mypy==1.11.2
+pytest==8.3.3
+
+# typing
+typing_extensions>=4.10.0

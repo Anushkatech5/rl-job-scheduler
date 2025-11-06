@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push: { branches: ["main"] }
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint
+        run: |
+          pip install ruff mypy
+          ruff check .
+          mypy envs agents evaluation --ignore-missing-imports
+      - name: Tests
+        run: pytest -q
+      - name: Smoke-train (1k steps)
+        run: python - <<'PY'
+from agents.rl_train import train
+train(total_timesteps=1000, run_name="ci_smoke")
+PY
