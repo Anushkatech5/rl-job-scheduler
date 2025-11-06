@@ -1,12 +1,6 @@
-# rl-job-scheduler
-# Cloud RL Scheduler
+# Cloud RL Schedule
 
-[![CI](https://img.shields.io/github/actions/workflow/status/YOUR_GH_USER/cloud-rl-scheduler/ci.yml?label=CI)](https://github.com/YOUR_GH_USER/cloud-rl-scheduler/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](#license)
-![Python](https://img.shields.io/badge/python-3.10%20|%203.11-blue)
-![Platform](https://img.shields.io/badge/platform-Windows%20|%20Linux%20|%20macOS-lightgrey)
-
-> A from-scratch **Reinforcement Learning** job scheduler with **heuristics**, **action masking**, **Streamlit UI**, **MLflow** tracking, **FastAPI** inference, **Docker** image, and **GitHub Actions** CI. CPU-only friendly on Windows.
+> A **Reinforcement Learning** job scheduler with **heuristics**, **action masking**, **Streamlit UI**, **MLflow** tracking, **FastAPI** inference, **Docker** image, and **GitHub Actions** CI. CPU-only friendly on Windows.
 
 ---
 
@@ -30,10 +24,7 @@
 - [Testing](#testing)
 - [Docker](#docker)
 - [Continuous Integration](#continuous-integration)
-- [Troubleshooting](#troubleshooting)
-- [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -47,6 +38,9 @@ We compare classic **heuristics** (FIFO, SJF, SRPT, EDF, Deadline-Priority) agai
 - FastAPI microservice for serving actions
 - CPU-friendly setup (no CUDA required)
 - Dockerfile + GitHub Actions CI + basic tests
+
+  <img width="1899" height="865" alt="image" src="https://github.com/user-attachments/assets/96069e7c-9aa4-4468-8dd5-29640cc6f264" />
+  <img width="1741" height="846" alt="image" src="https://github.com/user-attachments/assets/fad6ce36-86d8-4911-b000-80172f3273b0" />
 
 ---
 
@@ -330,60 +324,8 @@ On each push/PR:
 
 ---
 
-## Troubleshooting
-
-**`ModuleNotFoundError: envs` in Streamlit**
-
-* Ensure `envs/`, `agents/`, `evaluation/`, `services/`, `ui/` each have `__init__.py`
-* Launch from repo root: `cd cloud-rl-scheduler && streamlit run ui/app.py`
-* Keep the `sys.path` bootstrap at the top of `ui/app.py`
-
-**`Environment does not support action masking`**
-
-* Wrap env with `ActionMasker(JobShopEnv(...), mask_fn)` **before** `DummyVecEnv`
-* Implement `JobShopEnv.legal_action_mask()` returning a `bool` mask of `max_jobs + 1`
-
-**Windows `WinError 1114` when importing Torch**
-
-* Install CPU-only Torch (see above)
-* Install/repair MSVC 2015–2022 x64
-* Force CPU with `os.environ["CUDA_VISIBLE_DEVICES"] = ""` and `device="cpu"`
-
-**`set_action_masks` ImportError**
-
-* Don’t use it; rely on `ActionMasker` or call `predict` without masks (NOOP is valid)
-
----
-
-## Roadmap
-
-* **Finish-events** in env to compute **exact** completion times (mean/P95/P99)
-* **Constrained RL** (Lagrangian PPO) targeting miss-rate with violation tracking
-* **Richer dynamics**: preemption overhead, machine failures, non-stationary arrivals
-* **Trace loader**: minimal adapters for Google/Alibaba cluster traces
-* **UI**: time-series playback (queue/utilization), side-by-side run viewer
-* **Config system**: Hydra or pydantic-yaml for robust experiment sweeps
-
----
-
 ## Contributing
 
 Issues and PRs are welcome!
-Please run `ruff`, `mypy`, and `pytest` locally before opening a PR.
 
-```bash
-ruff check .
-mypy envs agents evaluation --ignore-missing-imports
-pytest -q
-```
-
----
-
-## License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
-```
-
-> Replace `YOUR_GH_USER` in the CI badge URL with your GitHub username/org. If you named the repo differently, change the title and badge path accordingly.
 ```
