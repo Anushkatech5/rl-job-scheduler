@@ -93,8 +93,8 @@ cloud-rl-scheduler/
 ├─ requirements.txt
 ├─ README.md
 └─ LICENSE
+```
 ---
-
 ## Prerequisites
 
 * **Python** 3.10 or 3.11
