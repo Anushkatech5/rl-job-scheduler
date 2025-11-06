@@ -327,5 +327,3 @@ On each push/PR:
 ## Contributing
 
 Issues and PRs are welcome!
-
-```
