@@ -1,5 +1,4 @@
 # rl-job-scheduler
-````md
 # Cloud RL Scheduler
 
 [![CI](https://img.shields.io/github/actions/workflow/status/YOUR_GH_USER/cloud-rl-scheduler/ci.yml?label=CI)](https://github.com/YOUR_GH_USER/cloud-rl-scheduler/actions)
@@ -100,8 +99,6 @@ cloud-rl-scheduler/
 ├─ requirements.txt
 ├─ README.md
 └─ LICENSE
-````
-
 ---
 
 ## Prerequisites
