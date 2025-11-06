@@ -1,4 +1,4 @@
-# Cloud RL Schedule
+# Cloud RL Scheduler
 
 > A **Reinforcement Learning** job scheduler with **heuristics**, **action masking**, **Streamlit UI**, **MLflow** tracking, **FastAPI** inference, **Docker** image, and **GitHub Actions** CI. CPU-only friendly on Windows.
 
